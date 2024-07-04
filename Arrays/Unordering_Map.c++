@@ -9,6 +9,7 @@ for(int i=0;i<n;i++){
     cin>>a[i];
     mp[a[i]]++;
 }
+ 
  int test;
  cin>>test;
  while(test--){
