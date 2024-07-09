@@ -36,3 +36,33 @@ for(auto i:v){
 
     return 0;
 }
+
+
+//
+
+unorder_map<int,int>unop;
+vector<vector<int>>ans;
+for(auto:arr){
+int count=umap[s-el];
+vector<int>pair(2);
+pair[0]=el;
+pair[1]=s-el;
+
+}
+while(count--){
+
+    ans.push_back(pair);
+}
+umap[ele]++;
+
+}
+for(int i=0;i<ans.size();i++ ){
+    vector<int>temp =ans[i];
+    sort(temp.begin(),temp.end());
+
+ans[i]=temp;
+
+
+}
+sort(ans.begin(),ans.end());
+return ans;
