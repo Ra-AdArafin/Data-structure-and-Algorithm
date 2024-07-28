@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int findPeakElement(int a[], int n)
+int peakelement(int a[], int n)
 {
     int start = 0;
     int end = n - 1;
@@ -12,7 +12,7 @@ int findPeakElement(int a[], int n)
         {
             start = mid + 1;
         }
-        else
+        else if (a[mid] > a[mid + 1])
         {
             end = mid;
         }
@@ -22,11 +22,16 @@ int findPeakElement(int a[], int n)
 
 int main()
 {
-    int n = 9;
-    int a[] = {70, 60, 3, 10, 30, 40, 10, 2, 3};
+    int n;
+    cin >> n;
+    int a[n];
+    for (int i = 0; i < n; i++)
+    {
+        cin >> a[i];
+    }
 
-    int peakIndex = findPeakElement(a, n);
-    cout << "Peak element is " << a[peakIndex] << endl;
+    int peak = peakelement(a, n);
 
+    cout << "Peak element is " << a[peak] << endl;
     return 0;
 }
