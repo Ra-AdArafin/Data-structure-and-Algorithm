@@ -1,78 +1,61 @@
-PAINTER'S PARTITION PROBLEM SOL bool isPossibleSol(vector<int> &boards, int n, int k, int mid)
+#include <bits/stdc++.h>
+using namespace std;
+
+bool ispossible(int a[], int mid, int n, int m)
 {
-
-    int painter = 1;
-
-    int boardsPainted = 0;
-
-    for (int i = 0; i < n; i++)
+    int cowcount = 1;
+    int lastpos = a[0];
+    for (int i = 1; i < n; i++)
     {
-
-        if (boardsPainted + boards[i] <= mid)
+        if (a[i] - lastpos >= mid)
         {
-
-            boardsPainted = boardsPainted + boards[i];
+            cowcount++;
+            lastpos = a[i];
         }
-
-        else
+        if (cowcount == m)
         {
-
-            painter++;
-
-            if (painter > k || boards[i] > mid)
-            {
-
-                return false;
-            }
-
-            boardsPainted = boards[i];
+            return true;
         }
     }
-
-    return true;
+    return false;
 }
 
-int findLargestMinDistance(vector<int> &boards, int k)
-
+int aggarsive(int a[], int n, int m)
 {
-
-    int s = 0;
-
-    int sum = 0;
-
-    int n = boards.size();
-
-    for (int i = 0; i < n; i++)
-    {
-
-        sum = sum + boards[i];
-    }
-
-    int e = sum;
-
-    int mid = s + (e - s) / 2;
+    sort(a, a + n);
 
     int ans = -1;
+    int start = 0;
+    int end = a[n - 1];
+    int mid = (start + end) / 2;
 
-    while (s <= e)
+    while (start <= end)
     {
-
-        if (isPossibleSol(boards, n, k, mid))
+        if (ispossible(a, mid, n, m))
         {
-
             ans = mid;
-
-            e = mid - 1;
+            start = mid + 1;
         }
-
         else
         {
-
-            s = mid + 1;
+            end = mid - 1;
         }
-
-        mid = s + (e - s) / 2;
+        mid = (start + end) / 2;
     }
-
     return ans;
+}
+
+int main()
+{
+    int n, m;
+    cin >> n >> m;
+    int a[n];
+    for (int i = 0; i < n; i++)
+    {
+        cin >> a[i];
+    }
+    int result = aggarsive(a, n, m);
+    cout << result << endl;
+
+    return 0;
 }
